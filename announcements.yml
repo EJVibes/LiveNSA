@@ -1,0 +1,60 @@
+name: Stop announcements
+
+# Started by the app when you pick a bus on a route (or by hand from the Actions tab).
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        description: "bustimes.org service id(s), comma separated"
+        required: true
+
+permissions:
+  contents: write
+
+# one run at a time so commits never clash; later runs wait their turn
+concurrency:
+  group: stop-announcements
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Piper and ffmpeg
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          pip install --quiet piper-tts==1.8.0
+
+      - name: Cache the Piper voice
+        uses: actions/cache@v4
+        with:
+          path: .voices
+          key: piper-voice-${{ hashFiles('config.json') }}
+
+      - name: Generate clips for new or changed stops
+        env:
+          SERVICE: ${{ inputs.service }}
+        run: python scripts/generate.py --service "$SERVICE"
+
+      - name: Commit changes
+        run: |
+          git config user.name "next-stop-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio
+          if git diff --cached --quiet; then
+            echo "No stops added or removed - nothing to commit."
+            exit 0
+          fi
+          git commit -m "Announcements for route(s) $SERVICE"
+          git pull --rebase --quiet
+          git push
+        env:
+          SERVICE: ${{ inputs.service }}

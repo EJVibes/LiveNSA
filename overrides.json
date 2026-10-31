@@ -1,0 +1,4 @@
+{
+ "_help": "Fix how a stop is spoken: add \"ATCO code\": \"Spoken name\" lines below. Find a stop's ATCO code on its bustimes.org page. The clip is remade the next time its route is picked.",
+ "_example_0100BRP90310": "Temple Meads Station"
+}
