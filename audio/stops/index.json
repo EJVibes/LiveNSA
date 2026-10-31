@@ -1,4 +1,184 @@
 {
+ "3590E001000": {
+  "text": "Wellington Cock Hotel",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001100": {
+  "text": "Wellington Constitution Hill",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001200": {
+  "text": "Wellington School Court",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001300": {
+  "text": "Wellington Princes Street",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001400": {
+  "text": "Wellington Cock Hotel",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001500": {
+  "text": "Wellington Whitehouse Hotel",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001600": {
+  "text": "Wellington Bennetts Bank",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001800": {
+  "text": "Wellington Bennetts Bank",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E001900": {
+  "text": "Wellington Whitehouse Hotel",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002000": {
+  "text": "Wellington Princes Street",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002100": {
+  "text": "Wellington School Court",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002200": {
+  "text": "Wellington Constitution Hill",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002300": {
+  "text": "Wellington Vineyard Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002400": {
+  "text": "Wellington Charlton School",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002500": {
+  "text": "Wellington Charlton School",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E002600": {
+  "text": "Wellington Vineyard Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008200": {
+  "text": "Ketley Shropshire Star",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008300": {
+  "text": "Ketley Horseshoes",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008400": {
+  "text": "Ketley White Lion",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008500": {
+  "text": "Ketley Shepherds Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008600": {
+  "text": "Ketley Quarry Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008700": {
+  "text": "Ketley Quarry Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008800": {
+  "text": "Ketley Shepherds Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E008900": {
+  "text": "Ketley Shropshire Star",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E009000": {
+  "text": "Ketley Horseshoes",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E009900": {
+  "text": "Oakengates Beveley Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010000": {
+  "text": "Oakengates Cartlidge House",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010200": {
+  "text": "Oakengates Bus Station",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010300": {
+  "text": "Oakengates Bus Station",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010600": {
+  "text": "Oakengates Hancock's Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010700": {
+  "text": "Oakengates Greyhound Island",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010800": {
+  "text": "Oakengates Greyhound Island",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E010900": {
+  "text": "Oakengates Hancock's Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E011000": {
+  "text": "Oakengates Cartlidge House",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E011100": {
+  "text": "Oakengates Beveley Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E012600": {
+  "text": "Randlay Brands Farm Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E012700": {
+  "text": "Randlay Mill Farm Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E012800": {
+  "text": "Randlay Abbey Fields",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E012900": {
+  "text": "Randlay Abbey Fields",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E013000": {
+  "text": "Randlay Mill Farm Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E013100": {
+  "text": "Randlay Brands Farm Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E013800": {
+  "text": "Stirchley Churncote",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E013900": {
+  "text": "Stirchley Churchway",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E014000": {
+  "text": "Stirchley Churchway",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E014100": {
+  "text": "Stirchley Churncote",
+  "voice": "en_GB-cori-high"
+ },
  "3590E016100": {
   "text": "Brookside Brindleyford",
   "voice": "en_GB-cori-high"
@@ -27,12 +207,24 @@
   "text": "Madeley Station Road",
   "voice": "en_GB-cori-high"
  },
+ "3590E017600": {
+  "text": "Madeley St. Marys Church",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E017800": {
+  "text": "Madeley Centre",
+  "voice": "en_GB-cori-high"
+ },
  "3590E017900": {
   "text": "Madeley Centre",
   "voice": "en_GB-cori-high"
  },
  "3590E017901": {
   "text": "Madeley Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E018000": {
+  "text": "Madeley Court Centre",
   "voice": "en_GB-cori-high"
  },
  "3590E018101": {
@@ -57,6 +249,10 @@
  },
  "3590E019001": {
   "text": "Madeley Maddocks",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019100": {
+  "text": "Madeley Court Centre",
   "voice": "en_GB-cori-high"
  },
  "3590E019200": {
@@ -97,6 +293,22 @@
  },
  "3590E020300": {
   "text": "Sutton Hill Stanwyck",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E021800": {
+  "text": "Woodside Wellsfield",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E021900": {
+  "text": "Woodside Waltondale",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022000": {
+  "text": "Woodside Waltondale",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022100": {
+  "text": "Woodside Wellsfield",
   "voice": "en_GB-cori-high"
  },
  "3590E022200": {
@@ -335,6 +547,86 @@
   "text": "Malins Lee Waggoner's Fold",
   "voice": "en_GB-cori-high"
  },
+ "3590E040800": {
+  "text": "Priorslee Fitness First",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E040900": {
+  "text": "Priorslee Fitness First",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E042200": {
+  "text": "Priorslee Roundabout",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E042300": {
+  "text": "Priorslee Roundabout",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E042400": {
+  "text": "Oakengates Central Park",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E042500": {
+  "text": "Oakengates Central Park",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E061501": {
+  "text": "Leegomery Millstream Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E061600": {
+  "text": "Leegomery Aintree Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E061800": {
+  "text": "Leegomery Halifax Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062100": {
+  "text": "Leegomery Apley Wood School",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062300": {
+  "text": "Leegomery Heatherdale",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062400": {
+  "text": "Leegomery Teresa Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062500": {
+  "text": "Leegomery Chockleys Meadow",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062600": {
+  "text": "Leegomery Heatherdale",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062800": {
+  "text": "Leegomery Leicester Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E062900": {
+  "text": "Leegomery Acacia Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E063100": {
+  "text": "Leegomery Hurleybrook Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E063300": {
+  "text": "Leegomery Teresa Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E063500": {
+  "text": "Leegomery Princess Royal Hospital",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E063600": {
+  "text": "Leegomery Princess Royal Hospital",
+  "voice": "en_GB-cori-high"
+ },
  "3590E097800": {
   "text": "Sutton Hill Selbourne",
   "voice": "en_GB-cori-high"
@@ -383,8 +675,68 @@
   "text": "Sutton Hill Sandcroft",
   "voice": "en_GB-cori-high"
  },
+ "3590E099500": {
+  "text": "Oakengates Market Street",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E099600": {
+  "text": "Oakengates Market Street",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E101400": {
+  "text": "Ketley Copper Beech Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E101401": {
+  "text": "Ketley Copper Beech Road",
+  "voice": "en_GB-cori-high"
+ },
  "3590E105200": {
   "text": "Telford Bus Station",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E105500": {
+  "text": "Telford Bus Station",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E105600": {
+  "text": "Telford Bus Station",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E106600": {
+  "text": "Telford Matheson House",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E106700": {
+  "text": "Telford Central",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E107000": {
+  "text": "Telford Matheson House",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E107100": {
+  "text": "Telford International Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E107200": {
+  "text": "Randlay Telford Town Park",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E107300": {
+  "text": "Randlay Telford Town Park",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E107400": {
+  "text": "Telford International Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E120003": {
+  "text": "Wellington Bus Station",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E120005": {
+  "text": "Wellington Bus Station",
   "voice": "en_GB-cori-high"
  }
 }
