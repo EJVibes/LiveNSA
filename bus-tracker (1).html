@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Next Stop</title>
+<meta name="theme-color" content="#0b1118">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Next Stop">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Barlow:wght@400;600&display=swap">
+<style>
+/* Layout: full-screen map, amber "destination blind" next-stop card on top, status strip at bottom */
+:root{
+  --bg:#0b1118; --panel:#121b25; --line:#223142; --fg:#e8eef4; --muted:#8a9bb0;
+  --amber:#ffb627; --go:#3ddc97; --warn:#ff6b5b;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);overflow:hidden;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+/* ---------- picker screens ---------- */
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--bg);z-index:20;
+  padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 12px) max(16px,env(safe-area-inset-left,0px))}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.brand{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:.02em;text-transform:uppercase;color:var(--amber)}
+.back{background:none;border:1px solid var(--line);border-radius:10px;padding:6px 12px;color:var(--muted)}
+h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.search{width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:inherit;font-size:17px}
+.list{flex:1;overflow-y:auto;margin-top:10px;display:flex;flex-direction:column;gap:6px;-webkit-overflow-scrolling:touch}
+.row{display:flex;align-items:center;gap:12px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+.row .main{flex:1;min-width:0}
+.row .t{font-weight:600;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .s{color:var(--muted);font-size:13px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{font-family:var(--display);font-weight:700;font-size:18px;min-width:46px;text-align:center;padding:4px 8px;border-radius:8px;background:var(--amber);color:#1a1200}
+.live{color:var(--go);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.note{color:var(--muted);font-size:14px;padding:14px 4px;line-height:1.45}
+.tabs{display:flex;gap:6px;margin:8px 0 0}
+.tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:none;color:var(--muted);font-weight:600}
+.tab[aria-selected="true"]{background:var(--amber);color:#1a1200;border-color:var(--amber)}
+
+/* ---------- nav screen ---------- */
+#nav{position:fixed;inset:0;z-index:10}
+#map{position:absolute;inset:0;background:#0d141c}
+.blind{position:absolute;left:0;right:0;top:0;z-index:5;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) 10px max(12px,env(safe-area-inset-left,0px));
+  background:linear-gradient(var(--bg) 70%,transparent);pointer-events:none}
+.card{background:#050505;border:2px solid #1d1d1d;border-radius:14px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.card .lbl{font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#b98419}
+.card .stop{font-family:var(--display);font-weight:700;color:var(--amber);font-size:32px;line-height:1.05;text-transform:uppercase;text-shadow:0 0 10px rgba(255,182,39,.45);overflow-wrap:anywhere}
+.card .meta{display:flex;justify-content:space-between;gap:10px;color:#c9a35a;font-size:14px;margin-top:4px;font-variant-numeric:tabular-nums}
+.after{margin-top:6px;color:var(--muted);font-size:13px;padding:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip{position:absolute;left:0;right:0;bottom:0;z-index:5;
+  padding:10px max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 10px) max(12px,env(safe-area-inset-left,0px));
+  background:linear-gradient(transparent,var(--bg) 30%)}
+.strip-in{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.strip .main{flex:1;min-width:0}
+.strip .t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip .s{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-right:5px;vertical-align:middle}
+.dot.ok{background:var(--go)} .dot.bad{background:var(--warn)}
+.fab{position:absolute;right:max(12px,env(safe-area-inset-right,0px));z-index:5;display:flex;flex-direction:column;gap:8px;top:50%;transform:translateY(-50%)}
+.fab button{width:48px;height:48px;border-radius:50%;background:var(--panel);border:1px solid var(--line);font-size:13px;font-weight:700;font-family:var(--display);letter-spacing:.04em}
+.fab button[aria-pressed="true"]{background:var(--amber);color:#1a1200;border-color:var(--amber)}
+.iconbtn{background:none;border:1px solid var(--line);border-radius:10px;padding:8px 10px;color:var(--fg);font-weight:600;font-size:13px}
+
+#startGate{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(5,8,12,.82);padding:24px}
+#startGate .box{max-width:340px;text-align:center;display:flex;flex-direction:column;gap:14px}
+#startGate p{color:var(--muted);margin:0;line-height:1.45}
+.big{padding:16px;border-radius:14px;border:none;background:var(--amber);color:#1a1200;font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.06em}
+
+.busmk{width:44px;height:44px}
+.busmk svg{display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.me{width:16px;height:16px;border-radius:50%;background:#4aa3ff;border:3px solid #fff;box-shadow:0 0 0 7px rgba(74,163,255,.25)}
+.maplibregl-ctrl-attrib{font-size:10px}
+.maplibregl-ctrl-bottom-right,.maplibregl-ctrl-bottom-left{bottom:calc(env(safe-area-inset-bottom,0px) + 78px)}
+</style>
+</head>
+<body>
+
+<!-- 1. Operator -->
+<section class="screen" id="opScreen">
+  <div class="top"><div class="brand">Next Stop</div></div>
+  <h2>Choose an operator</h2>
+  <input id="opSearch" class="search" type="search" placeholder="e.g. Stagecoach, First, Arriva…" autocomplete="off">
+  <div id="opList" class="list"></div>
+</section>
+
+<!-- 2. Vehicle -->
+<section class="screen" id="vehScreen" hidden>
+  <div class="top"><button class="back" id="vehBack">‹ Operators</button></div>
+  <h2 id="vehTitle">Vehicles</h2>
+  <input id="vehSearch" class="search" type="search" placeholder="Filter by fleet number, reg or route" autocomplete="off">
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabLive" role="tab" aria-selected="true">Running now</button>
+    <button class="tab" id="tabFleet" role="tab" aria-selected="false">Whole fleet</button>
+  </div>
+  <div id="vehList" class="list"></div>
+</section>
+
+<!-- 3. Navigation -->
+<section id="nav" hidden>
+  <div id="map"></div>
+  <div class="blind">
+    <div class="card" aria-live="polite">
+      <div class="lbl" id="nsLabel">Next stop</div>
+      <div class="stop" id="nsName">Waiting for bus…</div>
+      <div class="meta"><span id="nsDist"></span><span id="nsTime"></span></div>
+    </div>
+    <div class="after" id="nsAfter"></div>
+  </div>
+  <div class="fab">
+    <button id="btnHead" aria-pressed="true" title="Rotate map with direction of travel">HDG</button>
+    <button id="btnFollow" aria-pressed="true" title="Keep the map centred">FOL</button>
+    <button id="btnVoice" aria-pressed="true" title="Spoken announcements">VOX</button>
+  </div>
+  <div class="strip">
+    <div class="strip-in">
+      <span class="badge" id="lineBadge">–</span>
+      <div class="main">
+        <div class="t" id="busTitle">–</div>
+        <div class="s"><span class="dot" id="srcDot"></span><span id="busStatus">Connecting…</span></div>
+      </div>
+      <button class="iconbtn" id="navBack">Change</button>
+    </div>
+  </div>
+  <div id="startGate">
+    <div class="box">
+      <div class="brand">Ready</div>
+      <p>Tap start to turn on your phone's location and spoken next-stop announcements.</p>
+      <button class="big" id="btnStart">Start</button>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js"></script>
+<script>
+"use strict";
+const API = "https://bustimes.org";
+const MAP_STYLE = "https://tiles.openfreemap.org/styles/dark";       // OpenFreeMap: free, no API key
+const MAP_STYLE_FALLBACK = "https://tiles.openfreemap.org/styles/liberty";
+const POLL_MS = 8000;        // bus GPS refresh
+const AT_STOP_M = 30;        // within this of a stop = at the stop
+const OFF_ROUTE_M = 250;     // phone further than this from the route = don't trust it for stops
+const PHONE_MAX_AGE = 20000; // ms
+const PHONE_MAX_ACC = 100;   // m
+
+const $ = id => document.getElementById(id);
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+async function getJSON(path){
+  const r = await fetch(path.startsWith("http") ? path : API + path, {headers:{Accept:"application/json"}});
+  if(!r.ok) throw new Error("HTTP " + r.status);
+  return r.json();
+}
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function show(id){ for(const s of ["opScreen","vehScreen","nav"]) $(s).hidden = s !== id; }
+
+/* ---------------- stop names: drop opp / adj / stand ---------------- */
+function cleanName(raw){
+  let n = String(raw || "");
+  n = n.replace(/\b(opp(osite)?|adj(acent)?)\b\.?/gi, " ");          // opp, opposite, adj, adjacent
+  n = n.replace(/\bstand\s*[A-Z]?\d{0,3}[A-Z]?\b/gi, " ");            // Stand, Stand B, Stand 12
+  n = n.replace(/\(\s*[,\-–/]*\s*\)/g, " ");                         // brackets left empty
+  n = n.replace(/\s*[,\-–/]\s*(?=\)|$)/g, "").replace(/\(\s*[,\-–/]\s*/g, "(");
+  n = n.replace(/\s{2,}/g, " ").replace(/^[\s,\-–/]+|[\s,\-–/]+$/g, "").trim();
+  return n || String(raw || "Stop").trim();
+}
+function speakable(name){
+  return cleanName(name).replace(/[()]/g, " ")
+    .replace(/\bStn\b/gi,"Station").replace(/\bRd\b/g,"Road").replace(/\bSt\b(?=\s|$)/g,"Street")
+    .replace(/\bAve?\b/g,"Avenue").replace(/\bLn\b/g,"Lane").replace(/\bSq\b/g,"Square").replace(/\bHosp\b/gi,"Hospital")
+    .replace(/\s{2,}/g," ").trim();
+}
+const nameKey = n => cleanName(n).toLowerCase().replace(/[^a-z0-9]/g, "");
+
+/* ---------------- geo helpers ---------------- */
+const R = 6371000, rad = d => d*Math.PI/180;
+function dist(a, b){ // [lat,lng]
+  const dLat = rad(b[0]-a[0]), dLng = rad(b[1]-a[1]);
+  const h = Math.sin(dLat/2)**2 + Math.cos(rad(a[0]))*Math.cos(rad(b[0]))*Math.sin(dLng/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function bearing(a, b){
+  const y = Math.sin(rad(b[1]-a[1]))*Math.cos(rad(b[0]));
+  const x = Math.cos(rad(a[0]))*Math.sin(rad(b[0])) - Math.sin(rad(a[0]))*Math.cos(rad(b[0]))*Math.cos(rad(b[1]-a[1]));
+  return (Math.atan2(y,x)*180/Math.PI + 360) % 360;
+}
+function project(p, a, b){ // fraction t along a->b and distance d (m) from the segment
+  const k = Math.cos(rad(a[0]));
+  const bx=(b[1]-a[1])*k*111320, by=(b[0]-a[0])*110540;
+  const px=(p[1]-a[1])*k*111320, py=(p[0]-a[0])*110540;
+  const L = bx*bx + by*by || 1;
+  const t = (px*bx + py*by) / L;
+  const tc = Math.max(0, Math.min(1, t));
+  return {t, d: Math.hypot(px - bx*tc, py - by*tc)};
+}
+function fmtDist(m){
+  if(m == null || !isFinite(m)) return "";
+  if(m < 1000) return Math.round(m/10)*10 + " m";
+  return (m/1609.34).toFixed(1) + " mi";
+}
+function fmtClock(iso){
+  if(!iso) return ""; const d = new Date(iso); if(isNaN(d)) return "";
+  return d.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
+
+/* ---------------- 1. operators ---------------- */
+let searchTimer = null;
+$("opSearch").addEventListener("input", e => {
+  clearTimeout(searchTimer);
+  const q = e.target.value.trim();
+  if(q.length < 2){ renderRecentOps(); return; }
+  searchTimer = setTimeout(() => searchOps(q), 350);
+});
+function renderRecentOps(){
+  const recent = store.get("recentOps") || [];
+  const last = store.get("lastVehicle");
+  let html = "";
+  if(last?.operator) html += `<button class="row" id="resume"><span class="badge">↺</span><div class="main"><div class="t">Resume ${esc(last.name)}</div><div class="s">${esc(last.operator.name)}</div></div></button>`;
+  html += recent.length ? `<h2 style="margin-top:6px">Recent</h2>` + recent.map(opRow).join("")
+                        : `<div class="note">Type at least 2 letters to search bus operators on bustimes.org.</div>`;
+  $("opList").innerHTML = html;
+  if($("resume")) $("resume").onclick = () => { operator = last.operator; startTracking(last.id, last.name); };
+  bindOpRows();
+}
+function opRow(o){
+  return `<button class="row" data-noc="${esc(o.noc)}" data-name="${esc(o.name)}">
+    <div class="main"><div class="t">${esc(o.name)}</div><div class="s">${esc(o.noc)}${o.region_id ? " · " + esc(o.region_id) : ""}</div></div></button>`;
+}
+function bindOpRows(){
+  $("opList").querySelectorAll(".row[data-noc]").forEach(b => b.onclick = () => pickOperator({noc:b.dataset.noc, name:b.dataset.name}));
+}
+async function searchOps(q){
+  $("opList").innerHTML = `<div class="note">Searching…</div>`;
+  try{
+    const data = await getJSON(`/api/operators/?name__icontains=${encodeURIComponent(q)}`);
+    const ops = data.results || [];
+    $("opList").innerHTML = ops.length ? ops.map(opRow).join("") : `<div class="note">No operators match “${esc(q)}”.</div>`;
+    bindOpRows();
+  }catch(err){
+    $("opList").innerHTML = `<div class="note">Couldn't reach bustimes.org (${esc(err.message)}). Check your connection and try again.</div>`;
+  }
+}
+
+/* ---------------- 2. vehicles ---------------- */
+let operator = null, liveVehicles = [], fleet = [], fleetNext = null, vehTab = "live";
+function pickOperator(o){
+  operator = o;
+  const recent = (store.get("recentOps") || []).filter(r => r.noc !== o.noc);
+  recent.unshift(o); store.set("recentOps", recent.slice(0,8));
+  $("vehTitle").textContent = o.name; $("vehSearch").value = "";
+  fleet = []; fleetNext = null; setTab("live"); show("vehScreen"); loadLive();
+}
+$("vehBack").onclick = () => { show("opScreen"); renderRecentOps(); };
+$("tabLive").onclick = () => { setTab("live"); renderVehicles(); };
+$("tabFleet").onclick = () => { setTab("fleet"); if(!fleet.length) loadFleet(); else renderVehicles(); };
+$("vehSearch").addEventListener("input", () => {
+  if(vehTab === "fleet" && fleetNext){ clearTimeout(searchTimer); searchTimer = setTimeout(() => loadFleet($("vehSearch").value.trim()), 400); }
+  else renderVehicles();
+});
+function setTab(t){ vehTab = t; $("tabLive").setAttribute("aria-selected", t==="live"); $("tabFleet").setAttribute("aria-selected", t==="fleet"); }
+async function loadLive(){
+  $("vehList").innerHTML = `<div class="note">Finding buses running now…</div>`;
+  try{
+    liveVehicles = await getJSON(`/vehicles.json?operator=${encodeURIComponent(operator.noc)}`);
+    if(!Array.isArray(liveVehicles)) liveVehicles = [];
+    liveVehicles.sort((a,b) => (a.service?.line_name||"").localeCompare(b.service?.line_name||"", undefined, {numeric:true}));
+  }catch(err){ liveVehicles = []; $("vehList").innerHTML = `<div class="note">Couldn't load live buses (${esc(err.message)}).</div>`; return; }
+  renderVehicles();
+}
+async function loadFleet(q){
+  $("vehList").innerHTML = `<div class="note">Loading fleet…</div>`;
+  try{
+    let url = `/api/vehicles/?operator=${encodeURIComponent(operator.noc)}&withdrawn=false&limit=200`;
+    if(q) url += `&search=${encodeURIComponent(q)}`;
+    const data = await getJSON(url);
+    fleet = data.results || []; fleetNext = data.next;
+  }catch(err){ $("vehList").innerHTML = `<div class="note">Couldn't load the fleet (${esc(err.message)}).</div>`; return; }
+  renderVehicles(!!q);
+}
+function renderVehicles(serverFiltered){
+  const q = $("vehSearch").value.trim().toLowerCase();
+  let html = "";
+  if(vehTab === "live"){
+    const list = liveVehicles.filter(v => !q || [v.vehicle?.name, v.service?.line_name, v.destination].join(" ").toLowerCase().includes(q));
+    html = list.map(v => `<button class="row" data-id="${esc(v.id)}" data-name="${esc(v.vehicle?.name||"Bus "+v.id)}">
+      <span class="badge">${esc(v.service?.line_name || "–")}</span>
+      <div class="main"><div class="t">${esc(v.vehicle?.name || "Bus " + v.id)}</div><div class="s">${v.destination ? "to " + esc(v.destination) : "Not in service"}</div></div>
+      <span class="live">Live</span></button>`).join("");
+    if(!list.length) html = `<div class="note">${liveVehicles.length ? "No running buses match." : "No buses from this operator are being tracked right now. Try “Whole fleet” to pick one and wait for it to start."}</div>`;
+  } else {
+    const liveIds = new Set(liveVehicles.map(v => String(v.id)));
+    const list = serverFiltered ? fleet : fleet.filter(v => !q || [v.fleet_code, v.fleet_number, v.reg, v.name].join(" ").toLowerCase().includes(q));
+    html = list.map(v => {
+      const name = [v.fleet_code || v.fleet_number, v.reg].filter(Boolean).join(" – ") || ("Vehicle " + v.id);
+      return `<button class="row" data-id="${esc(v.id)}" data-name="${esc(name)}">
+        <div class="main"><div class="t">${esc(name)}</div><div class="s">${esc(v.vehicle_type?.name || "")}${v.name ? " · " + esc(v.name) : ""}</div></div>
+        ${liveIds.has(String(v.id)) ? `<span class="live">Live</span>` : ""}</button>`;
+    }).join("") || `<div class="note">No vehicles found.</div>`;
+    if(fleetNext && !serverFiltered) html += `<div class="note">Showing the first ${fleet.length}. Type a fleet number or reg to search them all.</div>`;
+  }
+  $("vehList").innerHTML = html;
+  $("vehList").querySelectorAll(".row").forEach(b => b.onclick = () => startTracking(b.dataset.id, b.dataset.name));
+}
+
+/* ---------------- 3. navigation ---------------- */
+let map = null, mapReady = false, busMarker, meMarker, busEl;
+let vehicleId = null, vehicleName = "", pollTimer = null, watchId = null, wakeLock = null;
+let bus = null;   // latest bus fix: guide for route, direction and where on the route we are
+let me = null;    // latest phone fix: drives stop progress + announcements
+let tripId = null, stops = [], nextIdx = -1;
+let served = new Set();          // stop name keys already passed or announced this trip
+let lastFallbackCode = null;
+let follow = true, headingUp = true, voice = true, started = false;
+
+function initMap(){
+  if(map) return;
+  map = new maplibregl.Map({
+    container: "map", style: MAP_STYLE, center: [-2.2, 53.5], zoom: 6, pitch: 0,
+    attributionControl: {compact: true}, dragRotate: true, pitchWithRotate: false
+  });
+  let triedFallback = false;
+  map.on("error", e => {
+    if(!mapReady && !triedFallback && /style|styles/i.test(String(e?.error?.message || e?.error?.url || ""))){
+      triedFallback = true; map.setStyle(MAP_STYLE_FALLBACK);
+    }
+  });
+  map.on("style.load", () => { addRouteLayers(); mapReady = true; drawRoute(); });
+  map.on("dragstart", e => { if(e.originalEvent) setFollow(false); });
+
+  busEl = document.createElement("div");
+  busEl.className = "busmk";
+  busEl.innerHTML = `<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="#ffb627" stroke="#050505" stroke-width="3"/><path d="M22 8 L31 29 L22 24.5 L13 29 Z" fill="#050505"/></svg>`;
+  busMarker = new maplibregl.Marker({element: busEl, rotationAlignment: "map", pitchAlignment: "map"});
+  const meEl = document.createElement("div"); meEl.className = "me";
+  meMarker = new maplibregl.Marker({element: meEl});
+}
+function addRouteLayers(){
+  if(!map.getSource("route")){
+    map.addSource("route", {type:"geojson", data:{type:"FeatureCollection", features:[]}});
+    map.addLayer({id:"route-casing", type:"line", source:"route", layout:{"line-join":"round","line-cap":"round"}, paint:{"line-color":"#050505","line-width":9,"line-opacity":.6}});
+    map.addLayer({id:"route", type:"line", source:"route", layout:{"line-join":"round","line-cap":"round"}, paint:{"line-color":"#ffb627","line-width":5,"line-opacity":.75}});
+  }
+  if(!map.getSource("stops")){
+    map.addSource("stops", {type:"geojson", data:{type:"FeatureCollection", features:[]}});
+    map.addLayer({id:"stops", type:"circle", source:"stops", paint:{
+      "circle-radius":["match",["get","state"],"next",9,"served",4,6],
+      "circle-color":["match",["get","state"],"served","#3a4656","#ffb627"],
+      "circle-stroke-color":"#050505","circle-stroke-width":2 }});
+    map.addLayer({id:"stop-labels", type:"symbol", source:"stops", minzoom:14,
+      filter:["!=",["get","state"],"served"],
+      layout:{"text-field":["get","name"],"text-size":12,"text-offset":[0,1.3],"text-anchor":"top","text-font":["Noto Sans Regular"],"text-optional":true},
+      paint:{"text-color":"#ffd27a","text-halo-color":"#050505","text-halo-width":1.5}});
+  }
+}
+
+function startTracking(id, name){
+  vehicleId = String(id); vehicleName = name;
+  store.set("lastVehicle", {id:vehicleId, name, operator});
+  bus = null; resetTrip(); lastFallbackCode = null;
+  show("nav"); initMap(); setTimeout(() => map.resize(), 50);
+  $("busTitle").textContent = name; $("lineBadge").textContent = "–";
+  setCard("Next stop", "Waiting for bus…", "", "", "");
+  $("startGate").hidden = started;
+  poll(); clearInterval(pollTimer); pollTimer = setInterval(poll, POLL_MS);
+}
+function resetTrip(){ tripId = null; stops = []; nextIdx = -1; served = new Set(); drawRoute(); }
+$("btnStart").onclick = async () => {
+  started = true; $("startGate").hidden = true;
+  say("Next stop announcements on.");
+  startPhoneGPS();
+  try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){}
+};
+document.addEventListener("visibilitychange", async () => {
+  if(document.visibilityState === "visible" && started && vehicleId){
+    try{ wakeLock = await navigator.wakeLock?.request("screen"); }catch(e){}
+    poll();
+  }
+});
+$("navBack").onclick = () => {
+  clearInterval(pollTimer); pollTimer = null; vehicleId = null;
+  if(watchId != null){ navigator.geolocation.clearWatch(watchId); watchId = null; }
+  try{ wakeLock?.release(); }catch(e){}
+  try{ speechSynthesis.cancel(); }catch(e){}
+  if(operator){ show("vehScreen"); loadLive(); } else { show("opScreen"); renderRecentOps(); }
+};
+function setFollow(v){ follow = v; $("btnFollow").setAttribute("aria-pressed", v); if(v) render(true); }
+function setHeading(v){ headingUp = v; $("btnHead").setAttribute("aria-pressed", v); if(v && !follow) setFollow(true); else render(true); }
+$("btnFollow").onclick = () => setFollow(!follow);
+$("btnHead").onclick = () => setHeading(!headingUp);
+$("btnVoice").onclick = () => { voice = !voice; $("btnVoice").setAttribute("aria-pressed", voice); if(!voice){ try{ speechSynthesis.cancel(); }catch(e){} } else say("Announcements on."); };
+
+/* ----- bus GPS: the guide ----- */
+async function poll(){
+  if(!vehicleId) return;
+  const id = vehicleId;
+  try{
+    const arr = await getJSON(`/vehicles.json?id=${encodeURIComponent(id)}`);
+    if(id !== vehicleId) return;
+    const v = Array.isArray(arr) ? arr.find(x => String(x.id) === id) || arr[0] : null;
+    if(!v){ setStatus("bad", "This bus isn't sending its location right now. Still checking…"); return; }
+    const pos = [v.coordinates[1], v.coordinates[0]];
+    const prev = bus;
+    bus = {
+      pos, heading: v.heading != null ? Number(v.heading) : (prev && dist(prev.pos,pos) > 10 ? bearing(prev.pos, pos) : prev?.heading ?? null),
+      time: v.datetime, trip_id: v.trip_id || null, line: v.service?.line_name || "", dest: v.destination || "",
+      nextCode: Array.isArray(v.stops) ? v.stops[1] : null
+    };
+    $("lineBadge").textContent = bus.line || "–";
+    $("busTitle").textContent = bus.dest ? "to " + bus.dest : vehicleName;
+    if(bus.trip_id && bus.trip_id !== tripId) loadTrip(bus.trip_id);
+    if(!bus.trip_id && tripId) resetTrip();
+    if(!bus.trip_id) fallbackNextStop(bus.nextCode);
+    update();
+  }catch(err){
+    setStatus("bad", "Can't reach bustimes.org — retrying");
+  }
+}
+
+/* ----- trip stops ----- */
+async function loadTrip(id){
+  resetTrip(); tripId = id;
+  try{
+    const trip = await getJSON(`/api/trips/${encodeURIComponent(id)}/`);
+    if(tripId !== id) return;
+    stops = (trip.times || []).filter(t => t.stop && t.stop.location).map(t => ({
+      code: t.stop.atco_code, raw: t.stop.name || "Stop", name: cleanName(t.stop.name),
+      key: nameKey(t.stop.name), pos: [t.stop.location[1], t.stop.location[0]],
+      time: t.expected_arrival_time || t.aimed_arrival_time || t.aimed_departure_time, track: t.track
+    }));
+    // the bus's own GPS tells us where on the route the journey is — everything behind it is already served
+    const guide = bus?.pos || phonePos();
+    nextIdx = guide ? locateOnRoute(guide) : 0;
+    for(let i = 0; i < nextIdx; i++) served.add(stops[i].key);
+    drawRoute();
+    if(started && stops.length){
+      const line = trip.service?.line_name || bus?.line;
+      say(`This is the ${line ? line + " " : ""}to ${speakable(trip.headsign || bus?.dest || stops[stops.length-1].raw)}.`);
+      announceNext();
+    }
+    update();
+  }catch(err){ stops = []; }
+}
+function drawRoute(){
+  if(!mapReady) return;
+  const line = [];
+  stops.forEach(s => {
+    if(Array.isArray(s.track) && s.track.length > 1) s.track.forEach(c => line.push([c[0], c[1]]));
+    else line.push([s.pos[1], s.pos[0]]);
+  });
+  map.getSource("route")?.setData({type:"FeatureCollection", features: line.length > 1 ? [{type:"Feature", geometry:{type:"LineString", coordinates:line}, properties:{}}] : []});
+  map.getSource("stops")?.setData({type:"FeatureCollection", features: stops.map((s,i) => ({
+    type:"Feature", geometry:{type:"Point", coordinates:[s.pos[1], s.pos[0]]},
+    properties:{name: s.name, state: i < nextIdx ? "served" : i === nextIdx ? "next" : "ahead"}
+  }))});
+}
+// nearest route segment to p -> index of the stop being headed for
+function locateOnRoute(p){
+  if(!stops.length) return -1;
+  let best = {d: dist(p, stops[0].pos), i: 0};
+  for(let i = 0; i < stops.length - 1; i++){
+    const pr = project(p, stops[i].pos, stops[i+1].pos);
+    if(pr.d < best.d) best = {d: pr.d, i: pr.t >= 1 ? i + 2 : i + 1};
+  }
+  return Math.min(best.i, stops.length - 1);
+}
+function distFromRoute(p){
+  let d = Infinity;
+  for(let i = 0; i < stops.length - 1; i++) d = Math.min(d, project(p, stops[i].pos, stops[i+1].pos).d);
+  return stops.length === 1 ? dist(p, stops[0].pos) : d;
+}
+// no timetable trip: use the bus's live "next stop" code, announced once per stop
+async function fallbackNextStop(code){
+  if(!code || code === lastFallbackCode) return;
+  lastFallbackCode = code;
+  try{
+    const s = await getJSON(`/api/stops/${encodeURIComponent(code)}/`);
+    const raw = s.long_name || s.name || s.common_name || code;
+    setCard("Next stop", cleanName(raw), "", "", "");
+    const key = nameKey(raw);
+    if(!served.has(key)){ served.add(key); say("Next stop: " + speakable(raw)); }
+  }catch(e){}
+}
+
+/* ----- phone GPS: drives announcements ----- */
+function startPhoneGPS(){
+  if(!("geolocation" in navigator) || watchId != null) return;
+  watchId = navigator.geolocation.watchPosition(p => {
+    me = {pos:[p.coords.latitude, p.coords.longitude], heading: p.coords.heading, speed: p.coords.speed, acc: p.coords.accuracy, time: Date.now()};
+    meMarker.setLngLat([me.pos[1], me.pos[0]]); if(!meMarker._map) meMarker.addTo(map);
+    update();
+  }, err => {
+    setStatus("bad", err.code === 1 ? "Location is blocked — allow it in your browser settings for announcements" : "Phone GPS unavailable — using bus GPS");
+  }, {enableHighAccuracy:true, maximumAge:1000, timeout:20000});
+}
+function phonePos(){
+  if(!me || Date.now() - me.time > PHONE_MAX_AGE || (me.acc && me.acc > PHONE_MAX_ACC)) return null;
+  return me.pos;
+}
+// which position drives stop progress: your phone, as long as it's on the bus's route; otherwise the bus
+function progressSource(){
+  const p = phonePos();
+  if(p && (!stops.length || distFromRoute(p) < OFF_ROUTE_M + (me.acc || 0))) return {pos: p, src: "phone"};
+  if(p && stops.length) return {pos: bus?.pos || null, src: "offroute", phone: p};
+  return {pos: bus?.pos || null, src: "bus"};
+}
+function travelHeading(src){
+  if(src === "phone" && me?.heading != null && !isNaN(me.heading) && (me.speed || 0) > 1.5) return me.heading;
+  if(bus?.heading != null) return bus.heading;
+  if(stops.length && nextIdx > 0 && nextIdx < stops.length) return bearing(stops[nextIdx-1].pos, stops[nextIdx].pos);
+  return 0;
+}
+
+/* ----- core loop ----- */
+let lastSrc = "bus";
+function update(){
+  const ps = progressSource(); lastSrc = ps.src;
+  if(ps.pos) advanceStops(ps.pos, ps.src === "phone" || !phonePos());
+  render(false);
+  const ageS = bus?.time ? Math.max(0, Math.round((Date.now() - new Date(bus.time))/1000)) : null;
+  const age = ageS == null ? "" : ageS < 60 ? `${ageS}s ago` : `${Math.round(ageS/60)} min ago`;
+  const txt = ps.src === "phone" ? `Your GPS · bus fix ${age}`
+            : ps.src === "offroute" ? `You're ${fmtDist(distFromRoute(ps.phone))} off the route · following the bus`
+            : `Bus GPS · updated ${age}`;
+  setStatus(ageS != null && ageS > 180 ? "bad" : "ok", txt);
+}
+function advanceStops(p, announce){
+  if(!stops.length) return;
+  if(nextIdx < 0) nextIdx = locateOnRoute(p);
+  const before = nextIdx;
+  // move forward only, past every stop we've gone by (handles slow GPS and skipped stops)
+  for(let guard = 0; guard < 8 && nextIdx < stops.length - 1; guard++){
+    const s = stops[nextIdx], n = stops[nextIdx+1];
+    const pr = project(p, s.pos, n.pos);
+    const ds = dist(p, s.pos);
+    if(ds > AT_STOP_M && ((pr.t > 0.05 && pr.d < 120) || dist(p, n.pos) < ds)){
+      served.add(s.key); nextIdx++;
+    } else break;
+  }
+  const last = stops.length - 1;
+  if(nextIdx === last && dist(p, stops[last].pos) < AT_STOP_M && !stops[last].arrived){
+    stops[last].arrived = true; served.add(stops[last].key);
+    if(announce) say(`${speakable(stops[last].raw)}. This bus terminates here.`);
+  }
+  if(nextIdx !== before){ drawRoute(); if(announce) announceNext(); }
+}
+// announce the next stop once; a stop (or same-named stop) that has been served is never announced again
+function announceNext(){
+  if(nextIdx < 0) return;
+  let i = nextIdx;
+  while(i < stops.length && served.has(stops[i].key)) i++;   // skip duplicates of stops already served
+  const s = stops[i]; if(!s) return;
+  served.add(s.key);
+  say(`Next stop: ${speakable(s.raw)}${i === stops.length - 1 ? ". This is the final stop." : "."}`);
+}
+function render(force){
+  const ps = progressSource();
+  const busPos = bus?.pos;                        // the map shows the bus
+  if(busPos){ busMarker.setLngLat([busPos[1], busPos[0]]); if(!busMarker._map) busMarker.addTo(map); }
+  const h = travelHeading(ps.src);
+  busMarker.setRotation(h);
+  const centre = ps.src === "phone" ? ps.pos : busPos;
+  if(follow && centre){
+    map.easeTo({center:[centre[1], centre[0]], bearing: headingUp ? h : 0, pitch: headingUp ? 45 : 0,
+      zoom: Math.max(map.getZoom(), 16), duration: force ? 600 : 900, essential: false});
+  }
+  if(stops.length && nextIdx >= 0){
+    const s = stops[nextIdx];
+    const here = ps.pos || busPos;
+    const seen = new Set([s.key]);
+    const rest = [];
+    for(let i = nextIdx + 1; i < stops.length && rest.length < 3; i++){ if(!seen.has(stops[i].key)){ seen.add(stops[i].key); rest.push(stops[i].name); } }
+    setCard(nextIdx === stops.length - 1 ? "Final stop" : "Next stop", s.name,
+      here ? fmtDist(dist(here, s.pos)) : "", s.time ? "due " + fmtClock(s.time) : "", rest.length ? "Then: " + rest.join(" · ") : "");
+  }
+}
+function setCard(label, name, d, t, after){
+  $("nsLabel").textContent = label; $("nsName").textContent = name;
+  $("nsDist").textContent = d; $("nsTime").textContent = t; $("nsAfter").textContent = after;
+}
+function setStatus(kind, text){
+  $("srcDot").className = "dot" + (kind === "ok" ? " ok" : kind === "bad" ? " bad" : "");
+  $("busStatus").textContent = text;
+}
+
+/* ----- speech ----- */
+let ukVoice = null;
+function pickVoice(){
+  const vs = window.speechSynthesis?.getVoices?.() || [];
+  ukVoice = vs.find(v => /en-GB/i.test(v.lang) && /female|serena|kate|libby|sonia/i.test(v.name)) || vs.find(v => /en-GB/i.test(v.lang)) || null;
+}
+if("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function say(text){
+  if(!voice || !started || !("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  if(ukVoice) u.voice = ukVoice;
+  u.lang = "en-GB"; u.rate = 0.95;
+  speechSynthesis.speak(u);
+}
+
+renderRecentOps();
+</script>
+</body>
+</html>
