@@ -738,5 +738,441 @@
  "3590E120005": {
   "text": "Wellington Bus Station",
   "voice": "en_GB-cori-high"
+ },
+ "43000701101": {
+  "text": "Wolverhampton Wulfrun Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "43000701302": {
+  "text": "Wolverhampton Police Station",
+  "voice": "en_GB-cori-high"
+ },
+ "43000701303": {
+  "text": "Wolverhampton Police Station",
+  "voice": "en_GB-cori-high"
+ },
+ "43000702202": {
+  "text": "Wolverhampton Art Gallery",
+  "voice": "en_GB-cori-high"
+ },
+ "43000702301": {
+  "text": "Wolverhampton Red Lion Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000703001": {
+  "text": "Wolverhampton Skinner Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000703201": {
+  "text": "Wolverhampton Salop Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000704101": {
+  "text": "Wolverhampton Fold Street Car Park",
+  "voice": "en_GB-cori-high"
+ },
+ "43000704102": {
+  "text": "Wolverhampton Fold Street Car Park",
+  "voice": "en_GB-cori-high"
+ },
+ "43000706702": {
+  "text": "Wolverhampton Old Hall Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000707101": {
+  "text": "Wolverhampton Temple Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000707102": {
+  "text": "Wolverhampton Temple Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000707301": {
+  "text": "Blakenhall Grove Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000707302": {
+  "text": "Blakenhall Grove Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000724501": {
+  "text": "Blakenhall Mason Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000724502": {
+  "text": "Blakenhall Mason Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000724601": {
+  "text": "Blakenhall Curzon Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000724602": {
+  "text": "Blakenhall Curzon Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729101": {
+  "text": "Blakenhall Knox Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729102": {
+  "text": "Blakenhall Knox Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729201": {
+  "text": "Goldthorn Park Parkfield Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729301": {
+  "text": "Parkfield Dudding Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729302": {
+  "text": "Parkfield Dudding Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729401": {
+  "text": "Parkfield Lawnswood Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729402": {
+  "text": "Parkfield Lawnswood Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729501": {
+  "text": "Parkfield Dovedale Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000729502": {
+  "text": "Parkfield Dovedale Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000740102": {
+  "text": "Wolverhampton Compton Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000740201": {
+  "text": "Merridale Connaught Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000740202": {
+  "text": "Merridale Connaught Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000740301": {
+  "text": "Whitmore Reans The Beeches",
+  "voice": "en_GB-cori-high"
+ },
+ "43000740302": {
+  "text": "Whitmore Reans The Beeches",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743101": {
+  "text": "Tettenhall Regina Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743102": {
+  "text": "Tettenhall Regina Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743201": {
+  "text": "Tettenhall Wood Kingsley Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743202": {
+  "text": "Tettenhall Wood Kingsley Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743702": {
+  "text": "Tettenhall Wood School Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743801": {
+  "text": "Tettenhall Wood Penk Rise",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743802": {
+  "text": "Tettenhall Wood Penk Rise",
+  "voice": "en_GB-cori-high"
+ },
+ "43000743901": {
+  "text": "Tettenhall Kings Comp School",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744101": {
+  "text": "Whitmore Reans Paget Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744102": {
+  "text": "Whitmore Reans Paget Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744201": {
+  "text": "Newbridge Balfour Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744202": {
+  "text": "Newbridge Balfour Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744301": {
+  "text": "Newbridge New Hampton Road West",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744302": {
+  "text": "Newbridge New Hampton Road West",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744401": {
+  "text": "Newbridge New Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744402": {
+  "text": "Newbridge New Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744501": {
+  "text": "Tettenhall Old Hill",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744502": {
+  "text": "Tettenhall Old Hill",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744601": {
+  "text": "Tettenhall Regis Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744602": {
+  "text": "Tettenhall Regis Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744801": {
+  "text": "Tettenhall Grange Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000744802": {
+  "text": "Tettenhall Grange Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851101": {
+  "text": "Northway Beacon Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851102": {
+  "text": "Northway Beacon Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851301": {
+  "text": "Northway Greenleighs",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851302": {
+  "text": "Northway Greenleighs",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851401": {
+  "text": "Northway Gibbons Hill Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851402": {
+  "text": "Northway Gibbons Hill Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851501": {
+  "text": "Beacon Hill Springfield Grove",
+  "voice": "en_GB-cori-high"
+ },
+ "43000851502": {
+  "text": "Beacon Hill Springfield Grove",
+  "voice": "en_GB-cori-high"
+ },
+ "43000852401": {
+  "text": "Sedgley High Park Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43000852402": {
+  "text": "Sedgley High Park Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43000852505": {
+  "text": "Sedgley Market Hall",
+  "voice": "en_GB-cori-high"
+ },
+ "43000852506": {
+  "text": "Sedgley Market Hall",
+  "voice": "en_GB-cori-high"
+ },
+ "43000858601": {
+  "text": "Sedgley Gate Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000858602": {
+  "text": "Sedgley Gate Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000858701": {
+  "text": "Sedgley Ridgeway",
+  "voice": "en_GB-cori-high"
+ },
+ "43000858702": {
+  "text": "Sedgley Ridgeway",
+  "voice": "en_GB-cori-high"
+ },
+ "43000858801": {
+  "text": "Upper Gornal Valley Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000858802": {
+  "text": "Upper Gornal Valley Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859101": {
+  "text": "Upper Gornal Moden Hill",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859102": {
+  "text": "Upper Gornal Moden Hill",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859201": {
+  "text": "Upper Gornal Highgate",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859202": {
+  "text": "Upper Gornal Highgate",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859302": {
+  "text": "Upper Gornal Jews Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859303": {
+  "text": "Upper Gornal Jews Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859401": {
+  "text": "Dibdale Blackthorne Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000859402": {
+  "text": "Dibdale Blackthorne Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872101": {
+  "text": "Dibdale Old Park Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872102": {
+  "text": "Dibdale Old Park Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872201": {
+  "text": "Shavers End The Broadway",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872202": {
+  "text": "Shavers End The Broadway",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872301": {
+  "text": "Shavers End Bishop Milner School",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872302": {
+  "text": "Shavers End Bishop Milner School",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872401": {
+  "text": "Shavers End Lightwood Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872402": {
+  "text": "Shavers End Lightwood Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872601": {
+  "text": "Shavers End Nith Place",
+  "voice": "en_GB-cori-high"
+ },
+ "43000872602": {
+  "text": "Shavers End Nith Place",
+  "voice": "en_GB-cori-high"
+ },
+ "43000873301": {
+  "text": "Eve Hill The Shrubbery",
+  "voice": "en_GB-cori-high"
+ },
+ "43000873302": {
+  "text": "Eve Hill The Shrubbery",
+  "voice": "en_GB-cori-high"
+ },
+ "43000873601": {
+  "text": "Eve Hill Grange Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000873602": {
+  "text": "Eve Hill Grange Road",
+  "voice": "en_GB-cori-high"
+ },
+ "43000874303": {
+  "text": "Dudley Gads Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "43000874304": {
+  "text": "Dudley Gads Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "43000874401": {
+  "text": "Dudley Stone Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000876001": {
+  "text": "Dudley Wolverhampton Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000876401": {
+  "text": "Eve Hill Charlton Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43000876402": {
+  "text": "Eve Hill Charlton Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43001316301": {
+  "text": "Wolverhampton Street Marks Church",
+  "voice": "en_GB-cori-high"
+ },
+ "43001338201": {
+  "text": "Dudley Evolve Campus",
+  "voice": "en_GB-cori-high"
+ },
+ "43007000601": {
+  "text": "Wolverhampton Princess Street",
+  "voice": "en_GB-cori-high"
+ },
+ "43007302004": {
+  "text": "Goldthorn Park Phoenix Park",
+  "voice": "en_GB-cori-high"
+ },
+ "43007302005": {
+  "text": "Goldthorn Park Phoenix Park",
+  "voice": "en_GB-cori-high"
+ },
+ "43007403201": {
+  "text": "Tettenhall Wood The Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "43007440501": {
+  "text": "Tettenhall The Poynings",
+  "voice": "en_GB-cori-high"
+ },
+ "43007440502": {
+  "text": "Tettenhall The Poynings",
+  "voice": "en_GB-cori-high"
+ },
+ "43007650501": {
+  "text": "Merridale Compton Road",
+  "voice": "en_GB-cori-high"
  }
 }
