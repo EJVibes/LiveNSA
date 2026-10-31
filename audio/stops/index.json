@@ -1,0 +1,390 @@
+{
+ "3590E016100": {
+  "text": "Brookside Brindleyford",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E016200": {
+  "text": "Brookside Brackenfield",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E016800": {
+  "text": "Cuckoo Oak Severn Gorge Park",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E016801": {
+  "text": "Cuckoo Oak Veterinary Surgery",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E017300": {
+  "text": "Madeley Hills Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E017400": {
+  "text": "Madeley Bennett Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E017500": {
+  "text": "Madeley Station Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E017900": {
+  "text": "Madeley Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E017901": {
+  "text": "Madeley Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E018101": {
+  "text": "Madeley Maddocks",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E018200": {
+  "text": "Madeley Cricket Ground",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E018300": {
+  "text": "Madeley Lees Farm Roundabout",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E018800": {
+  "text": "Madeley Lees Farm Roundabout",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E018900": {
+  "text": "Madeley Cricket Ground",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019001": {
+  "text": "Madeley Maddocks",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019200": {
+  "text": "Madeley Street Marys School",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019500": {
+  "text": "Madeley Bennett Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019600": {
+  "text": "Madeley Hills Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019700": {
+  "text": "Madeley Kemberton Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019800": {
+  "text": "Sutton Hill Madebrook Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E019900": {
+  "text": "Sutton Hill Springmeadow",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E020100": {
+  "text": "Sutton Hill Shakespeare Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E020101": {
+  "text": "Sutton Hill Shakespeare Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E020200": {
+  "text": "Sutton Hill Springmeadow",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E020300": {
+  "text": "Sutton Hill Stanwyck",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022200": {
+  "text": "Woodside Lees Farm Roundabout",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022500": {
+  "text": "Woodside Lees Farm Roundabout",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022600": {
+  "text": "Woodside Abraham Darby School",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022700": {
+  "text": "Woodside Abraham Darby School",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022800": {
+  "text": "Woodside Wyvern",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E022900": {
+  "text": "Woodside Wyvern",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023000": {
+  "text": "Woodside Warrensway",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023100": {
+  "text": "Woodside Warrensway",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023200": {
+  "text": "Woodside The Saplings",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023300": {
+  "text": "Woodside The Saplings",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023400": {
+  "text": "Woodside Park Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023500": {
+  "text": "Woodside Park Lane",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023600": {
+  "text": "Woodside Woodrows",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023700": {
+  "text": "Woodside Woodrows",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023800": {
+  "text": "Woodside Willowfield",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E023900": {
+  "text": "Woodside Willowfield",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024000": {
+  "text": "Woodside Madeley Academy",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024100": {
+  "text": "Woodside Parkway",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024200": {
+  "text": "Woodside Parkway",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024300": {
+  "text": "Woodside Madeley Academy",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024400": {
+  "text": "Aqueduct Lawford Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024500": {
+  "text": "Aqueduct Lawford Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024700": {
+  "text": "Aqueduct Hazelwood Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024800": {
+  "text": "Aqueduct Community Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E024900": {
+  "text": "Aqueduct Community Centre",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025000": {
+  "text": "Aqueduct Pageant Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025100": {
+  "text": "Aqueduct Pageant Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025200": {
+  "text": "Aqueduct Castlefields Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025300": {
+  "text": "Aqueduct Castlefields Way",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025600": {
+  "text": "Aqueduct Ellis Peters Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025800": {
+  "text": "Aqueduct Southall Corner",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E025900": {
+  "text": "Aqueduct Southall Corner",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E026200": {
+  "text": "Little Dawley Holy Trinity Church",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E026300": {
+  "text": "Little Dawley Holy Trinity Church",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E026400": {
+  "text": "Little Dawley Parish Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E026500": {
+  "text": "Little Dawley Parish Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E026600": {
+  "text": "Dawley Manor Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027100": {
+  "text": "Dawley Deepfield Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027200": {
+  "text": "Dawley Webb Crescent",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027300": {
+  "text": "Dawley Portley Corner",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027400": {
+  "text": "Dawley Portley Corner",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027500": {
+  "text": "Dawley High Street",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027600": {
+  "text": "Dawley High Street",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027700": {
+  "text": "Dawley Lancaster Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027800": {
+  "text": "Dawley Lancaster Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E027900": {
+  "text": "Malins Lee Gloucester Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E028000": {
+  "text": "Malins Lee Gloucester Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E028100": {
+  "text": "Malins Lee Ardern Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E028200": {
+  "text": "Malins Lee Ardern Avenue",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E028300": {
+  "text": "Malins Lee Buxton Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E028400": {
+  "text": "Malins Lee Buxton Road",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E028900": {
+  "text": "Malins Lee Street Leonards Church",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E029000": {
+  "text": "Malins Lee Street Leonards Church",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E037800": {
+  "text": "Malins Lee Coachwell Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E038300": {
+  "text": "Malins Lee Coachwell Close",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E038400": {
+  "text": "Malins Lee Farm Lodge Grove",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E038500": {
+  "text": "Malins Lee Withywood Drive",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E038600": {
+  "text": "Malins Lee Waggoner's Fold",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E038700": {
+  "text": "Malins Lee Waggoner's Fold",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E097800": {
+  "text": "Sutton Hill Selbourne",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E097801": {
+  "text": "Sutton Hill Selbourne",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E097900": {
+  "text": "Sutton Hill Summerhill",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E097901": {
+  "text": "Sutton Hill Summerhill",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098000": {
+  "text": "Sutton Hill Southgate",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098001": {
+  "text": "Sutton Hill Southgate",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098100": {
+  "text": "Sutton Hill Smallwood",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098101": {
+  "text": "Sutton Hill Smallwood",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098200": {
+  "text": "Sutton Hill Southfield",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098201": {
+  "text": "Sutton Hill Southfield",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098300": {
+  "text": "Sutton Hill Sandcroft",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E098301": {
+  "text": "Sutton Hill Sandcroft",
+  "voice": "en_GB-cori-high"
+ },
+ "3590E105200": {
+  "text": "Telford Bus Station",
+  "voice": "en_GB-cori-high"
+ }
+}

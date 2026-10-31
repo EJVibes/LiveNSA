@@ -1,0 +1,14 @@
+{
+ "final_stop": {
+  "text": "This is the final stop.",
+  "voice": "en_GB-cori-high"
+ },
+ "next_stop": {
+  "text": "Next stop:",
+  "voice": "en_GB-cori-high"
+ },
+ "terminates": {
+  "text": "This bus terminates here.",
+  "voice": "en_GB-cori-high"
+ }
+}
